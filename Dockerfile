@@ -1,3 +1,4 @@
+FROM gcc:4.9
 FROM jupyter/scipy-notebook:python-3.9.6
 
 RUN pip install --no-cache-dir notebook 
@@ -17,9 +18,5 @@ COPY . ${HOME}
 USER root
 RUN chown -R ${NB_UID} ${HOME}
 USER ${NB_USER}
-
-RUN apt-get update && \
-    apt-get -y install gcc mono-mcs && \
-    rm -rf /var/lib/apt/lists/*
 
 
