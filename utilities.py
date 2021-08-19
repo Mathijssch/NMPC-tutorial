@@ -35,7 +35,7 @@ class Animation:
         self.ax.set_ylim(pos_min[1], pos_max[1])
 
         self.car = Rectangle(self.corner[:,0], vehicle_length, vehicle_width, alpha=0.8)
-        self.parking = Rectangle((-0.6*vehicle_length,-0.6*vehicle_width), 1.2*vehicle_length, 1.2*vehicle_width,ec=(0.00,0.15,0.30), fc=(0.00,0.15,0.30,0.2), linewidth=5)
+        self.parking = Rectangle((-0.6*vehicle_length,-0.6*vehicle_width), 1.2*vehicle_length, 1.2*vehicle_width,ec=(153./255, 1., 51./255), fc=(153./255, 1., 51./255, 0.2), linewidth=5)
 
         self.ax.add_patch(self.parking) 
         self.ax.add_patch(self.car)
