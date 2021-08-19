@@ -85,7 +85,7 @@ def compile_ocp(nlp: dict, bounds: dict):
         print("c-file: ", cfile)
         # sofile = tmpdir + f"{name}.so"
         sofile = os.path.join(tmpdir, f"{name}.so")
-        os.system(f"cc -fPIC -shared -O3 -march=native {cfile} -o {sofile}")
+        os.system(f"gcc -fPIC -shared -O3 -march=native {cfile} -o {sofile}")
         print(sofile)
         prob = pa.load_casadi_problem_with_param(sofile, n, m)
   
