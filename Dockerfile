@@ -1,4 +1,3 @@
-FROM gcc:4.9
 FROM jupyter/scipy-notebook:python-3.9.6
 
 RUN pip install --no-cache-dir notebook 
@@ -9,14 +8,22 @@ ENV USER ${NB_USER}
 ENV NB_UID ${NB_UID}
 ENV HOME /home/${NB_USER}
 
-# RUN useradd -c "Default user" \
-#    -u ${NB_UID} \
-#    ${NB_USER}
+
 
 # Make sure the contents of our repo are in ${HOME}
 COPY . ${HOME}
 USER root
 RUN chown -R ${NB_UID} ${HOME}
+
+# --- Install dependency gcc/g++
+# RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
+
+# --- Install gcc/g++
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gcc-7 g++-7 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 USER ${NB_USER}
 
 
