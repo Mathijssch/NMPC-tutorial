@@ -77,7 +77,7 @@ def compile_ocp(nlp: dict, bounds: dict):
     name = "mpcproblem"
     f_prob = cs.Function("f", [nlp["x"], nlp["p"]], [nlp["f"]])
     g_prob = cs.Function("g", [nlp["x"], nlp["p"]], [nlp["g"]])
-    codegen, n, m, num_p = pa.generate_casadi_problem(name, f_prob, g_prob)
+    codegen, n, m, num_p = pa.generate_casadi_problem(f_prob, g_prob, name=name)
 
     with TemporaryDirectory(prefix="panoc_") as tmpdir:
         print("temp dir: ", tmpdir)
